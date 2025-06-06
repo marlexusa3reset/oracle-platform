@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situationship Mode - MyA3Reset Oracle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .insight-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0) 1;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+        
+        .insight-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .progress-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            background: #333;
+            border-radius: 10px;
+            height: 12px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #c0c0c0, #ffffff);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            width: 60%;
+        }
+        
+        .pattern-analysis {
+            background: rgba(40, 40, 40, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .pattern-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #555;
+        }
+        
+        .pattern-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pattern-name {
+            color: #cccccc;
+            font-weight: 600;
+        }
+        
+        .pattern-score {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .communication-exercise {
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #444;
+        }
+        
+        .scenario {
+            background: rgba(50, 50, 50, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #c0c0c0;
+        }
+        
+        .response-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .response-option {
+            background: rgba(60, 60, 60, 0.6);
+            border: 1px solid #666;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #cccccc;
+        }
+        
+        .response-option:hover {
+            background: rgba(80, 80, 80, 0.8);
+            border-color: #888;
+            color: #ffffff;
+        }
+        
+        .response-option.selected {
+            background: linear-gradient(135deg, #4a4a4a 0%, #6a6a6a 100%);
+            border-color: #c0c0c0;
+            color: #ffffff;
+        }
+        
+        .insight-points {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .insight-points li {
+            color: #aaaaaa;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .insight-points li:before {
+            content: "💭";
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2a2a2a 0%, #4a4a4a 25%, #6a6a6a 50%, #4a4a4a 75%, #2a2a2a 100%);
+            color: white;
+            border: 1px solid #666;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, #3a3a3a 0%, #5a5a5a 25%, #7a7a7a 50%, #5a5a5a 75%, #3a3a3a 100%);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .nav-buttons { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💭 Situationship Mode</h1>
+            <p>Relationship Intelligence & Emotional Mastery</p>
+        </div>
+        
+        <div class="progress-section">
+            <h3>Journey Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Module 6 of 10 • Communication Breakthrough Strategies</p>
+        </div>
+        
+        <div class="insight-card">
+            <h2 class="insight-title">Your Relationship Pattern Analysis</h2>
+            
+            <div class="pattern-analysis">
+                <h4 style="color: #ffffff; margin-bottom: 15px;">Current Patterns Identified</h4>
+                
+                <div class="pattern-item">
+                    <span class="pattern-name">Attachment Style</span>
+                    <span class="pattern-score">Secure-Anxious (72%)</span>
+                </div>
+                
+                <div class="pattern-item">
+                    <span class="pattern-name">Communication Style</span>
+                    <span class="pattern-score">Indirect-Passive (68%)</span>
+                </div>
+                
+                <div class="pattern-item">
+                    <span class="pattern-name">Conflict Resolution</span>
+                    <span class="pattern-score">Avoidant (81%)</span>
+                </div>
+                
+                <div class="pattern-item">
+                    <span class="pattern-name">Emotional Expression</span>
+                    <span class="pattern-score">Guarded (75%)</span>
+                </div>
+                
+                <div class="pattern-item">
+                    <span class="pattern-name">Boundary Setting</span>
+                    <span class="pattern-score">Unclear (89%)</span>
+                </div>
+            </div>
+            
+            <ul class="insight-points">
+                <li>You tend to seek reassurance but struggle to ask for it directly</li>
+                <li>Your communication becomes unclear when emotions are high</li>
+                <li>You often prioritize keeping peace over expressing your needs</li>
+                <li>Past experiences have created protective barriers around vulnerability</li>
+                <li>You desire deeper connection but fear potential rejection</li>
+            </ul>
+        </div>
+        
+        <div class="communication-exercise">
+            <h3 style="margin-bottom: 20px; color: #ffffff;">Communication Breakthrough Exercise</h3>
+            
+            <div class="scenario">
+                <h4 style="color: #ffffff; margin-bottom: 10px;">Scenario:</h4>
+                <p style="color: #cccccc;">
+                    You've been seeing someone for 3 months. The relationship feels undefined, and you're 
+                    getting mixed signals. They're affectionate in private but distant in public. You want 
+                    clarity but fear pushing them away. How do you approach this conversation?
+                </p>
+            </div>
+            
+            <div class="response-options">
+                <div class="response-option" onclick="selectResponse(this, 'passive')">
+                    "I don't want to make things weird, so I'll just wait and see what happens. Maybe they'll bring it up eventually."
+                </div>
+                
+                <div class="response-option" onclick="selectResponse(this, 'aggressive')">
+                    "I need to know where this is going right now. Are we together or not? I can't handle this uncertainty anymore."
+                </div>
+                
+                <div class="response-option" onclick="selectResponse(this, 'assertive')">
+                    "I've been reflecting on what I want from this connection. Could we talk about where we both see this heading?"
+                </div>
+                
+                <div class="response-option" onclick="selectResponse(this, 'indirect')">
+                    "I noticed we seem closer when it's just us. How do you feel about that?"
+                </div>
+            </div>
+            
+            <button class="btn" onclick="analyzeResponse()" id="analyzeBtn" style="margin-top: 20px; display: none;">
+                Analyze My Response
+            </button>
+            
+            <div id="responseAnalysis" style="display: none; margin-top: 20px; padding: 20px; background: rgba(50, 50, 50, 0.8); border-radius: 8px;">
+                <!-- Analysis will be populated here -->
+            </div>
+        </div>
+        
+        <div class="insight-card">
+            <h3 class="insight-title">This Week's Breakthrough Focus</h3>
+            <p style="color: #cccccc; margin-bottom: 20px;">
+                Based on your pattern analysis, we're focusing on developing assertive communication 
+                skills and clearer boundary setting.
+            </p>
+            
+            <ul class="insight-points">
+                <li>Practice using "I" statements to express needs without blame</li>
+                <li>Set one small boundary this week and notice the outcome</li>
+                <li>Ask for what you want directly in low-stakes situations</li>
+                <li>Notice when you're people-pleasing and pause before responding</li>
+                <li>Express one authentic feeling each day to someone you trust</li>
+            </ul>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="btn" onclick="previousModule()">← Previous Insight</button>
+            <button class="btn" onclick="nextModule()">Continue Journey →</button>
+        </div>
+    </div>
+    
+    <script>
+        let selectedResponseType = null;
+        
+        function selectResponse(element, type) {
+            // Remove selection from other options
+            document.querySelectorAll('.response-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Select current option
+            element.classList.add('selected');
+            selectedResponseType = type;
+            
+            // Show analyze button
+            document.getElementById('analyzeBtn').style.display = 'inline-block';
+        }
+        
+        function analyzeResponse() {
+            if (!selectedResponseType) return;
+            
+            const analyses = {
+                'passive': {
+                    title: 'Passive Response Pattern',
+                    content: 'This response shows avoidance and people-pleasing tendencies. While it feels safe, it often leads to prolonged uncertainty and resentment. You\'re giving your power away by waiting for others to initiate difficult conversations.',
+                    growth: 'Practice expressing your needs directly. Start with low-stakes situations to build confidence.'
+                },
+                'aggressive': {
+                    title: 'Aggressive Response Pattern', 
+                    content: 'This response comes from frustration and anxiety. While your needs are clear, the demanding tone may trigger defensiveness in others. This approach often pushes people away.',
+                    growth: 'Channel this energy into assertive communication. Express urgency without ultimatums.'
+                },
+                'assertive': {
+                    title: 'Assertive Response Pattern',
+                    content: 'This is an excellent example of healthy communication. You\'re taking responsibility for your feelings, inviting dialogue rather than demanding answers, and creating space for both perspectives.',
+                    growth: 'This is your target communication style. Notice how it feels different from your usual patterns.'
+                },
+                'indirect': {
+                    title: 'Indirect Response Pattern',
+                    content: 'This response hints at the issue without directly addressing it. While softer than aggressive approaches, it leaves room for misinterpretation and may not lead to the clarity you seek.',
+                    growth: 'Practice being more direct while maintaining kindness. Your needs matter and deserve clear expression.'
+                }
+            };
+            
+            const analysis = analyses[selectedResponseType];
+            const analysisDiv = document.getElementById('responseAnalysis');
+            
+            analysisDiv.innerHTML = `
+                <h4 style="color: #ffffff; margin-bottom: 10px;">${analysis.title}</h4>
+                <p style="color: #cccccc; margin-bottom: 15px; line-height: 1.5;">${analysis.content}</p>
+                <div style="background: rgba(70, 70, 70, 0.6); padding: 15px; border-radius: 6px; border-left: 3px solid #c0c0c0;">
+                    <strong style="color: #ffffff;">Growth Opportunity:</strong>
+                    <p style="color: #cccccc; margin-top: 5px;">${analysis.growth}</p>
+                </div>
+            `;
+            
+            analysisDiv.style.display = 'block';
+        }
+        
+        function previousModule() {
+            alert('Navigating to previous module: Emotional Intelligence Development');
+        }
+        
+        function nextModule() {
+            alert('Excellent progress! Next module unlocked: Conflict Resolution Mastery\n\nYour communication pattern insights have been saved to your profile.');
+        }
+    </script>
+</body>
+</html>

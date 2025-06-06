@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyA3Reset: The Oracle ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+        
+        .modes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .mode-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0) 1;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255,255,255,0.1);
+        }
+        
+        .mode-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .mode-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mode-description {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .mode-features {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .mode-features li {
+            color: #aaaaaa;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .mode-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .auth-section {
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+        
+        .auth-btn {
+            background: linear-gradient(135deg, #2a2a2a 0%, #4a4a4a 25%, #6a6a6a 50%, #4a4a4a 75%, #2a2a2a 100%);
+            color: white;
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0) 1;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #3a3a3a 0%, #5a5a5a 25%, #7a7a7a 50%, #5a5a5a 75%, #3a3a3a 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .modes-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔮 MyA3Reset: The Oracle</h1>
+            <p>Unlock your potential with AI-powered personal development</p>
+        </div>
+        
+        <div class="modes-container">
+            <div class="mode-card" onclick="window.open('ceo-mode.html', '_blank')">
+                <span class="mode-icon">👑</span>
+                <h3 class="mode-title">CEO Mode</h3>
+                <p class="mode-description">Executive leadership training and strategic thinking development</p>
+                <ul class="mode-features">
+                    <li>Strategic decision-making frameworks</li>
+                    <li>Leadership communication skills</li>
+                    <li>Executive presence development</li>
+                    <li>Performance optimization techniques</li>
+                </ul>
+            </div>
+            
+            <div class="mode-card" onclick="window.open('situationship-mode.html', '_blank')">
+                <span class="mode-icon">💭</span>
+                <h3 class="mode-title">Situationship Mode</h3>
+                <p class="mode-description">Relationship intelligence and emotional mastery</p>
+                <ul class="mode-features">
+                    <li>Relationship pattern analysis</li>
+                    <li>Communication breakthrough strategies</li>
+                    <li>Emotional intelligence development</li>
+                    <li>Conflict resolution mastery</li>
+                </ul>
+            </div>
+            
+            <div class="mode-card" onclick="window.open('personality-mode.html', '_blank')">
+                <span class="mode-icon">🧬</span>
+                <h3 class="mode-title">Soul Blueprint Analysis</h3>
+                <p class="mode-description">Deep personality assessment and life discovery</p>
+                <ul class="mode-features">
+                    <li>Comprehensive personality mapping</li>
+                    <li>Core purpose identification</li>
+                    <li>Life resume and reflection tools</li>
+                    <li>Personal transformation roadmap</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="auth-section">
+            <h3 style="margin-bottom: 15px; color: #ffffff;">Welcome to Your Oracle</h3>
+            <p style="color: #cccccc; margin-bottom: 20px;">$19.99/month • Cancel anytime</p>
+            <a href="dashboard.html" class="auth-btn">Continue with Sign In</a>
+            <a href="dashboard.html" class="auth-btn">🚀 Start Subscription</a>
+        </div>
+    </div>
+</body>
+</html>

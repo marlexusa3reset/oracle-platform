@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyA3Reset: Oracle Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subscription-status {
+            background: linear-gradient(135deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #555;
+        }
+        
+        .status-active {
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .mode-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0) 1;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+        
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255,255,255,0.1);
+        }
+        
+        .mode-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .mode-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mode-description {
+            color: #cccccc;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            background: #333;
+            border-radius: 10px;
+            height: 8px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #c0c0c0, #ffffff);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: center;
+        }
+        
+        .start-btn {
+            background: linear-gradient(135deg, #2a2a2a 0%, #4a4a4a 25%, #6a6a6a 50%, #4a4a4a 75%, #2a2a2a 100%);
+            color: white;
+            border: 1px solid #666;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, #3a3a3a 0%, #5a5a5a 25%, #7a7a7a 50%, #5a5a5a 75%, #3a3a3a 100%);
+        }
+        
+        .pricing-section {
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #444;
+            margin-top: 30px;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        
+        .subscribe-btn {
+            background: linear-gradient(135deg, #4a4a4a 0%, #6a6a6a 25%, #8a8a8a 50%, #6a6a6a 75%, #4a4a4a 100%);
+            color: white;
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0) 1;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #5a5a5a 0%, #7a7a7a 25%, #9a9a9a 50%, #7a7a7a 75%, #5a5a5a 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .modes-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔮 Oracle Dashboard</h1>
+            <p>Your Personal Development Journey</p>
+        </div>
+        
+        <div class="subscription-status">
+            <h3>Subscription Status</h3>
+            <p class="status-active">✓ Premium Access Active</p>
+            <p style="color: #aaa; margin-top: 5px;">Next billing: Monthly at $19.99</p>
+        </div>
+        
+        <div class="modes-grid">
+            <div class="mode-card" onclick="window.open('ceo-mode.html', '_blank')">
+                <span class="mode-icon">👑</span>
+                <h3 class="mode-title">CEO Mode</h3>
+                <p class="mode-description">Executive leadership training and strategic development</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+                <p class="progress-text">3 of 12 modules completed</p>
+                <a href="ceo-mode.html" class="start-btn">Continue Training</a>
+            </div>
+            
+            <div class="mode-card" onclick="window.open('situationship-mode.html', '_blank')">
+                <span class="mode-icon">💭</span>
+                <h3 class="mode-title">Situationship Mode</h3>
+                <p class="mode-description">Relationship intelligence and emotional mastery</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <p class="progress-text">6 of 10 modules completed</p>
+                <a href="situationship-mode.html" class="start-btn">Continue Journey</a>
+            </div>
+            
+            <div class="mode-card" onclick="window.open('personality-mode.html', '_blank')">
+                <span class="mode-icon">🧬</span>
+                <h3 class="mode-title">Soul Blueprint Analysis</h3>
+                <p class="mode-description">Deep personality assessment and life discovery</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+                <p class="progress-text">Assessment 80% complete</p>
+                <a href="personality-mode.html" class="start-btn">Finish Assessment</a>
+            </div>
+        </div>
+        
+        <div class="pricing-section">
+            <h3 style="margin-bottom: 15px; color: #ffffff;">Already Subscribed?</h3>
+            <p style="color: #cccccc; margin-bottom: 20px;">Manage your subscription or billing</p>
+            <a href="#" class="subscribe-btn" onclick="alert('Billing management will be integrated with Stripe customer portal')">Manage Billing</a>
+            <a href="#" class="subscribe-btn" onclick="alert('Account settings and preferences coming soon')">Account Settings</a>
+        </div>
+    </div>
+    
+    <script>
+        // Simple progress tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate some user progress data
+            console.log('Dashboard loaded - tracking user engagement');
+        });
+    </script>
+</body>
+</html>
